@@ -29,6 +29,52 @@ Without privacy, prediction markets become just another surveillance tool. With 
 
 ---
 
+## Product Market Fit & Go-To-Market
+
+### Product Market Fit
+
+**Personal Experience:** I use Polymarket extensively — not primarily for gambling, but as a **real-time news verification tool**. When breaking news hits, I check prediction market prices to gauge credibility faster than waiting for mainstream media confirmation. The market aggregates informed opinions instantly.
+
+**The Problem I Experienced:** The more I used Polymarket, the more I realized that complex, multi-outcome events (geopolitics, elections with multiple candidates, correlated market scenarios) suffer from:
+1. **Fragmented liquidity** — each outcome trades separately with wide spreads
+2. **Easy insider fingerprinting** — sophisticated bettors on unusual combinations are trivially identifiable
+
+**Our PMF:** We solve both problems:
+- **Unified liquidity** via joint-outcome AMM — all correlated events share one pool
+- **Complete privacy** via Aleo ZK — no one can identify who bet what
+
+### Go-To-Market Strategy
+
+**Why Privacy First, Why Now:**
+
+Privacy is the defining trend in crypto. As surveillance capabilities expand and AI-powered analysis improves, the demand for private financial infrastructure is accelerating:
+
+1. **Regulatory pressure** — OFAC sanctions, KYC requirements make transparent DeFi risky
+2. **AI surveillance** — Pattern matching can now identify traders from behavioral signatures
+3. **Institutional demand** — Funds cannot use transparent markets without revealing strategies
+4. **Whistleblower protection** — The most valuable information comes from insiders who need anonymity
+
+**GTM Phases:**
+
+| Phase | Focus | Target Users |
+|-------|-------|--------------|
+| **Phase 1** | Privacy-first prediction market on Aleo testnet | Crypto-native privacy advocates, Aleo community |
+| **Phase 2** | Multi-dimensional markets (correlated events) | Sophisticated traders, news junkies like me |
+| **Phase 3** | Institutional features (selective disclosure, compliance proofs) | Funds, research firms, journalists |
+
+**Competitive Positioning:**
+- **vs Polymarket:** We offer privacy (they expose everything)
+- **vs Traditional PMs:** We offer multi-dimensional correlated betting (they fragment liquidity)
+- **vs Other ZK projects:** We have a clear use case with proven PMF (people already use PMs for news)
+
+---
+
+## System Architecture
+
+![Architecture Diagram](public/Architecture.png)
+
+---
+
 ## The Two Problems
 
 ### Problem 1: Transparency Exposes Informed Traders
@@ -269,6 +315,58 @@ Liquidity pooling comes from **one shared joint engine**, not from payout scalin
 ## AMM Design: Active vAMM + LS-LMSR on CLOB
 
 We replace the passive pool model with an **Active Virtual AMM (vAMM)** that acts as a "Robot Market Maker" on a **Central Limit Order Book (CLOB)**.
+
+*See the architecture diagram above for visual reference.*
+
+### Key Components
+
+| Component | Role |
+|-----------|------|
+| **PRIVATE ZONE (Aleo ZK Layer)** | User submits encrypted bet → ZK Proof validates → Encrypted state storage |
+| **Active vAMM Engine** | Fair Price Calculator, Step-Ladder Order Generator, Inventory Skewing, Volatility Spread Monitor |
+| **CLOB (Order Book)** | Holds both vAMM ladder orders and user limit orders; Best Price First matching |
+| **LP Vault (USDC)** | Collateral pool that funds JIT minting |
+| **Gnosis CTF** | Conditional Token Framework for minting outcome token sets |
+| **World Table** | 8 joint outcomes (p000...p111) with public aggregated prices |
+
+### Initial Bootstrapping (Market Creation)
+
+Before the vAMM can start quoting, the market must be bootstrapped:
+
+1. **Market Maker deposits USDC** into the LP Vault
+2. **Gnosis CTF mints Full Outcome Set** — All outcome tokens (A-H) are created
+3. **Tokens sold back to World Table** — Initial prices set (e.g., uniform 1/8 each)
+4. **vAMM activates** — Starts calculating fair prices from World Table
+5. **vAMM places ladder orders on CLOB** — Market is now live
+
+### CLOB vs vAMM: Coexistence Rules
+
+**Key Principle:** User limit orders and vAMM orders coexist on the CLOB independently. They do NOT interfere with each other unless a trade actually executes.
+
+**Scenario A: User Order Executes First (No vAMM Impact)**
+- If a user's price is better than vAMM (e.g., User @ $0.58 vs vAMM @ $0.60)
+- User order fills first (Best Price First)
+- vAMM price NOT affected, World Table NOT updated
+
+**Scenario B: Trade Hits vAMM (World Table Updates)**
+- When a trade matches against vAMM orders:
+  1. JIT Minting triggered (LP Vault + Gnosis CTF)
+  2. World Table updates (new probabilities)
+  3. vAMM recalculates fair price
+  4. vAMM places NEW ladder orders on CLOB
+
+**Scenario C: Volatility Expansion Spread (Both Affected)**
+- When price moves too fast (e.g., $0.20 → $0.80 in minutes)
+- vAMM detects "toxic flow" and widens spread (e.g., Bid @ $0.30, Ask @ $0.70)
+- Old vAMM orders cancelled, new wider spread placed
+- User orders remain but vAMM liquidity is now further away
+
+| Scenario | vAMM Affected? | CLOB Affected? | World Table Updated? |
+|----------|----------------|----------------|----------------------|
+| User order fills first | ❌ No | ✅ Order removed | ❌ No |
+| vAMM order fills | ✅ Recalculates | ✅ New orders placed | ✅ Yes |
+| Volatility Spread triggers | ✅ Widens spread | ✅ vAMM orders change | ❌ No (just spread) |
+
 
 ### 1. The Engine: LS-LMSR (Liquidity-Sensitive)
 
