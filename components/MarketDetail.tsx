@@ -87,7 +87,7 @@ const MARKET_DATA = {
 
 export function MarketDetail({ marketId, onBack }: MarketDetailProps) {
   const [contractType, setContractType] = useState<ContractType>('marginal');
-  
+
   const market = MARKET_DATA[marketId as keyof typeof MARKET_DATA] || MARKET_DATA['1'];
 
   const formatCurrency = (value: number) => {
@@ -114,38 +114,32 @@ export function MarketDetail({ marketId, onBack }: MarketDetailProps) {
       {/* Back Button */}
       <button
         onClick={onBack}
-        className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+        className="flex items-center gap-2 text-gray-600 hover:text-foreground transition-colors"
       >
         <ArrowLeft className="w-5 h-5" />
         <span>Back to Markets</span>
       </button>
 
       {/* Market Header */}
-      <div className="bg-[var(--card)] border border-border rounded-xl p-6">
+      <div className="bg-[var(--card)] border border-gray-200 rounded-xl p-6">
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-3">
-              <span className="px-3 py-1 bg-purple-500/10 text-purple-400 text-sm rounded-md font-medium">
-                Joint-Outcome Market
-              </span>
-              <span className="px-3 py-1 bg-muted text-muted-foreground text-sm rounded-md flex items-center gap-1.5">
+              <span className="px-3 py-1 bg-muted text-gray-600 text-sm rounded-md flex items-center gap-1.5">
                 <Lock className="w-3.5 h-3.5" />
                 Aleo ZK Privacy
               </span>
-              <span className="px-3 py-1 bg-blue-500/10 text-blue-400 text-sm rounded-md">
-                N=3 Events → 2³ = 8 Worlds
-              </span>
             </div>
             <h1 className="text-3xl font-semibold mb-3">{market.title}</h1>
-            <p className="text-muted-foreground leading-relaxed mb-4">{market.description}</p>
-            
+            <p className="text-gray-600 leading-relaxed mb-4">{market.description}</p>
+
             {/* Correlated Events */}
             <div className="flex flex-wrap gap-2">
               {market.events.map((event, idx) => (
-                <div key={event.id} className="flex items-center gap-2 px-3 py-2 bg-muted/50 border border-border rounded-lg">
-                  <span className="text-sm font-medium text-purple-400">{event.id}:</span>
+                <div key={event.id} className="flex items-center gap-2 px-3 py-2 bg-muted/50 border border-gray-200 rounded-lg">
+                  <span className="text-sm font-medium text-purple-700">{event.id}:</span>
                   <span className="text-sm">{event.name}</span>
-                  <span className="text-xs text-muted-foreground">
+                  <span className="text-xs text-gray-600">
                     ({(marginals[event.id as keyof typeof marginals] * 100).toFixed(1)}%)
                   </span>
                 </div>
@@ -155,9 +149,9 @@ export function MarketDetail({ marketId, onBack }: MarketDetailProps) {
         </div>
 
         {/* Market Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 border-t border-border">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 border-t border-gray-200">
           <div>
-            <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
+            <div className="flex items-center gap-2 text-gray-600 text-sm mb-2">
               <Droplet className="w-4 h-4" />
               <span>Total Liquidity</span>
             </div>
@@ -165,7 +159,7 @@ export function MarketDetail({ marketId, onBack }: MarketDetailProps) {
           </div>
 
           <div>
-            <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
+            <div className="flex items-center gap-2 text-gray-600 text-sm mb-2">
               <Users className="w-4 h-4" />
               <span>Anonymous Traders</span>
             </div>
@@ -173,7 +167,7 @@ export function MarketDetail({ marketId, onBack }: MarketDetailProps) {
           </div>
 
           <div>
-            <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
+            <div className="flex items-center gap-2 text-gray-600 text-sm mb-2">
               <Clock className="w-4 h-4" />
               <span>Deadline</span>
             </div>
@@ -181,11 +175,11 @@ export function MarketDetail({ marketId, onBack }: MarketDetailProps) {
           </div>
 
           <div>
-            <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
+            <div className="flex items-center gap-2 text-gray-600 text-sm mb-2">
               <Shield className="w-4 h-4" />
               <span>Privacy Model</span>
             </div>
-            <p className="text-sm font-medium text-purple-400">Zero-Knowledge</p>
+            <p className="text-sm font-medium text-purple-700">Zero-Knowledge</p>
           </div>
         </div>
       </div>
@@ -193,11 +187,11 @@ export function MarketDetail({ marketId, onBack }: MarketDetailProps) {
       {/* Aleo Privacy Notice */}
       <div className="bg-purple-500/5 border border-purple-500/20 rounded-xl p-5">
         <div className="flex items-start gap-3">
-          <Shield className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" />
+          <Shield className="w-5 h-5 text-purple-700 flex-shrink-0 mt-0.5" />
           <div className="flex-1">
-            <h3 className="text-sm font-semibold text-purple-400 mb-1">Built on Aleo - Programmable Privacy Layer 1</h3>
-            <p className="text-sm text-muted-foreground">
-              All trades execute privately using zk-SNARKs. Individual bets, positions, and strategies remain completely hidden. 
+            <h3 className="text-sm font-semibold text-purple-700 mb-1">Built on Aleo - Programmable Privacy Layer 1</h3>
+            <p className="text-sm text-gray-600">
+              All trades execute privately using zk-SNARKs. Individual bets, positions, and strategies remain completely hidden.
               Only aggregated world probabilities are public. This protects informed traders and whistleblowers while maintaining market integrity.
             </p>
           </div>
@@ -213,14 +207,14 @@ export function MarketDetail({ marketId, onBack }: MarketDetailProps) {
           <WorldTable events={market.events} worlds={market.worlds} />
 
           {/* Price Chart */}
-          <div className="bg-[var(--card)] border border-border rounded-xl p-6">
+          <div className="bg-[var(--card)] border border-gray-200 rounded-xl p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-semibold">Marginal A Probability History</h2>
               <div className="flex gap-2">
-                <button className="px-3 py-1.5 bg-purple-500/20 text-purple-400 text-sm rounded-lg">
+                <button className="px-3 py-1.5 bg-purple-500/20 text-purple-700 text-sm rounded-lg">
                   7D
                 </button>
-                <button className="px-3 py-1.5 text-muted-foreground hover:bg-muted text-sm rounded-lg transition-colors">
+                <button className="px-3 py-1.5 text-gray-600 hover:bg-muted text-sm rounded-lg transition-colors">
                   30D
                 </button>
               </div>
@@ -261,12 +255,12 @@ export function MarketDetail({ marketId, onBack }: MarketDetailProps) {
       </div>
 
       {/* Resolution Criteria */}
-      <div className="bg-[var(--card)] border border-border rounded-xl p-6">
+      <div className="bg-[var(--card)] border border-gray-200 rounded-xl p-6">
         <div className="flex items-center gap-2 mb-4">
           <Info className="w-5 h-5 text-blue-400" />
           <h2 className="text-lg font-semibold">Resolution Criteria</h2>
         </div>
-        <div className="space-y-3 text-sm text-muted-foreground">
+        <div className="space-y-3 text-sm text-gray-600">
           <div>
             <strong className="text-foreground">Event A ({market.events[0].name}):</strong> Resolves "Yes" if Iran conducts a military strike on Israeli territory before the deadline, as confirmed by at least 2 major international news sources.
           </div>

@@ -18,15 +18,15 @@ export default function Home() {
       </Head>
 
       {/* Header */}
-      <header className="border-b border-gray-800 bg-[#0f1014]">
+      <header className="border-b border-gray-200 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-8">
               <div className="flex items-center gap-2">
-                <Shield className="w-7 h-7 text-purple-500" />
+                <Shield className="w-7 h-7 text-purple-600" />
                 <div>
-                  <h1 className="text-xl font-semibold">Aleo Markets</h1>
-                  <p className="text-xs text-gray-500">Zero-Knowledge Prediction Markets</p>
+                  <h1 className="text-xl font-semibold text-black">Aleo Markets</h1>
+                  <p className="text-xs text-black/60 font-medium">Zero-Knowledge Prediction Markets</p>
                 </div>
               </div>
 
@@ -36,9 +36,9 @@ export default function Home() {
                     setActiveView('markets');
                     setSelectedMarketId(null);
                   }}
-                  className={`px-4 py-2 rounded-lg transition-colors ${activeView === 'markets'
-                    ? 'bg-purple-500/10 text-purple-400'
-                    : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+                  className={`px-4 py-2 rounded-lg transition-colors font-medium ${activeView === 'markets'
+                    ? 'bg-purple-600/10 text-purple-700'
+                    : 'text-gray-600 hover:text-black hover:bg-gray-100'
                     }`}
                 >
                   Markets
@@ -48,9 +48,9 @@ export default function Home() {
                     setActiveView('portfolio');
                     setSelectedMarketId(null);
                   }}
-                  className={`px-4 py-2 rounded-lg transition-colors ${activeView === 'portfolio'
-                    ? 'bg-purple-500/10 text-purple-400'
-                    : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+                  className={`px-4 py-2 rounded-lg transition-colors font-medium ${activeView === 'portfolio'
+                    ? 'bg-purple-600/10 text-purple-700'
+                    : 'text-gray-600 hover:text-black hover:bg-gray-100'
                     }`}
                 >
                   Portfolio
@@ -60,9 +60,9 @@ export default function Home() {
                     setActiveView('vault');
                     setSelectedMarketId(null);
                   }}
-                  className={`px-4 py-2 rounded-lg transition-colors flex items-center gap-2 ${activeView === 'vault'
-                    ? 'bg-purple-500/10 text-purple-400'
-                    : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+                  className={`px-4 py-2 rounded-lg transition-colors flex items-center gap-2 font-medium ${activeView === 'vault'
+                    ? 'bg-purple-600/10 text-purple-700'
+                    : 'text-gray-600 hover:text-black hover:bg-gray-100'
                     }`}
                 >
                   <Layers className="w-4 h-4" />
@@ -72,18 +72,18 @@ export default function Home() {
             </div>
 
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 rounded-lg">
+              <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <span className="text-sm text-gray-300">Aleo Mainnet</span>
+                <span className="text-sm text-gray-700 font-medium">Aleo Mainnet</span>
               </div>
 
               <button className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors">
-                <Wallet className="w-4 h-4" />
-                <span className="text-sm font-medium">Connect Wallet</span>
+                <Wallet className="w-4 h-4 text-white" />
+                <span className="text-sm font-medium text-white">Connect Wallet</span>
               </button>
 
-              <button className="p-2 hover:bg-gray-800 rounded-lg transition-colors">
-                <Settings className="w-5 h-5 text-gray-400" />
+              <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                <Settings className="w-5 h-5 text-gray-600" />
               </button>
             </div>
           </div>

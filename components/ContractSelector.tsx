@@ -56,20 +56,20 @@ export function ContractSelector({ selected, onChange, events }: ContractSelecto
   const colorMap: Record<string, string> = {
     green: 'border-green-500 bg-green-500/10 text-green-400',
     blue: 'border-blue-500 bg-blue-500/10 text-blue-400',
-    purple: 'border-purple-500 bg-purple-500/10 text-purple-400',
+    purple: 'border-purple-500 bg-purple-600/10 text-purple-700',
   };
 
   const colorMapInactive: Record<string, string> = {
-    green: 'border-border hover:border-green-500/50',
-    blue: 'border-border hover:border-blue-500/50',
-    purple: 'border-border hover:border-purple-500/50',
+    green: 'border-gray-200 hover:border-green-500/50',
+    blue: 'border-gray-200 hover:border-blue-500/50',
+    purple: 'border-gray-200 hover:border-purple-500/50',
   };
 
   return (
     <div className="space-y-3">
       <div>
-        <h3 className="text-sm font-medium text-gray-300 mb-2">Contract Type</h3>
-        <p className="text-xs text-muted-foreground">Choose how you want to bet on this joint-outcome market</p>
+        <h3 className="text-sm font-medium text-gray-800 mb-2">Contract Type</h3>
+        <p className="text-xs text-gray-600">Choose how you want to bet on this joint-outcome market</p>
       </div>
 
       <div className="grid grid-cols-1 gap-3">
@@ -83,7 +83,7 @@ export function ContractSelector({ selected, onChange, events }: ContractSelecto
               className={`text-left p-4 rounded-lg border-2 transition-all ${
                 isSelected
                   ? colorMap[contract.color]
-                  : `bg-gray-900/30 ${colorMapInactive[contract.color]}`
+                  : `bg-gray-100/30 ${colorMapInactive[contract.color]}`
               }`}
             >
               <div className="flex items-start gap-3">
@@ -105,19 +105,19 @@ export function ContractSelector({ selected, onChange, events }: ContractSelecto
                       {contract.difficulty}
                     </span>
                   </div>
-                  <p className={`text-sm mb-2 ${isSelected ? 'text-gray-300' : 'text-muted-foreground'}`}>
+                  <p className={`text-sm mb-2 ${isSelected ? 'text-gray-800' : 'text-gray-600'}`}>
                     {contract.description}
                   </p>
                   
                   {isSelected && (
                     <div className="space-y-1 mt-3 pt-3 border-t border-gray-700">
                       <div>
-                        <p className="text-xs text-muted-foreground mb-1">Formula:</p>
-                        <p className="text-xs font-mono text-gray-300">{contract.formula}</p>
+                        <p className="text-xs text-gray-600 mb-1">Formula:</p>
+                        <p className="text-xs font-mono text-gray-800">{contract.formula}</p>
                       </div>
                       <div>
-                        <p className="text-xs text-muted-foreground mb-1">Includes worlds:</p>
-                        <p className="text-xs font-mono text-purple-400">{contract.example}</p>
+                        <p className="text-xs text-gray-600 mb-1">Includes worlds:</p>
+                        <p className="text-xs font-mono text-purple-700">{contract.example}</p>
                       </div>
                     </div>
                   )}

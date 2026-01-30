@@ -17,6 +17,7 @@ interface Market {
   traders: number;
   deadline: string;
   correlatedEvents?: string[];
+  logo: string;
 }
 
 const MOCK_MARKETS: Market[] = [
@@ -27,14 +28,15 @@ const MOCK_MARKETS: Market[] = [
     category: 'Geopolitics',
     totalLiquidity: 2450000,
     outcomes: [
-      { name: 'All Escalate (111)', probability: 0.10, change24h: 12.3 },
-      { name: 'Strike+Response (110)', probability: 0.25, change24h: 8.1 },
-      { name: 'No Escalation (000)', probability: 0.20, change24h: -5.2 }
+      { name: 'All Escalate', probability: 0.10, change24h: 12.3 },
+      { name: 'Strike+Response', probability: 0.25, change24h: 8.1 },
+      { name: 'No Escalation', probability: 0.20, change24h: -5.2 }
     ],
     volume24h: 185000,
     traders: 1247,
     deadline: '2026-06-30',
-    correlatedEvents: ['Iran Strike', 'US Response', 'Oil >$120']
+    correlatedEvents: ['Iran Strike', 'US Response', 'Oil >$120'],
+    logo: '/titlePic/middleeast.png'
   },
   {
     id: '2',
@@ -43,14 +45,15 @@ const MOCK_MARKETS: Market[] = [
     category: 'Politics',
     totalLiquidity: 5200000,
     outcomes: [
-      { name: 'Dem Primary Win + General Win (111)', probability: 0.35, change24h: 2.1 },
-      { name: 'Rep Primary Win + General Win (011)', probability: 0.28, change24h: -1.3 },
+      { name: 'Dem Primary Win + General Win', probability: 0.35, change24h: 2.1 },
+      { name: 'Rep Primary Win + General Win', probability: 0.28, change24h: -1.3 },
       { name: 'Split Outcome', probability: 0.37, change24h: -0.8 }
     ],
     volume24h: 420000,
     traders: 3241,
     deadline: '2028-11-07',
-    correlatedEvents: ['Dem Primary', 'General Election', 'Turnout >65%']
+    correlatedEvents: ['Dem Primary', 'General Election', 'Turnout >65%'],
+    logo: '/titlePic/uselection.png'
   },
   {
     id: '3',
@@ -59,14 +62,15 @@ const MOCK_MARKETS: Market[] = [
     category: 'Science',
     totalLiquidity: 890000,
     outcomes: [
-      { name: 'Full Success (111)', probability: 0.18, change24h: 1.5 },
-      { name: 'Launch+Land (110)', probability: 0.37, change24h: 0.8 },
-      { name: 'Launch Only (100)', probability: 0.28, change24h: -0.3 }
+      { name: 'Full Success', probability: 0.18, change24h: 1.5 },
+      { name: 'Launch+Land', probability: 0.37, change24h: 0.8 },
+      { name: 'Launch Only', probability: 0.28, change24h: -0.3 }
     ],
     volume24h: 67000,
     traders: 892,
     deadline: '2030-12-31',
-    correlatedEvents: ['Launch Success', 'Safe Landing', 'Duration >90d']
+    correlatedEvents: ['Launch Success', 'Safe Landing', 'Duration >90d'],
+    logo: '/titlePic/spacex.png'
   },
   {
     id: '4',
@@ -75,14 +79,15 @@ const MOCK_MARKETS: Market[] = [
     category: 'Technology',
     totalLiquidity: 1750000,
     outcomes: [
-      { name: 'All Achieved (111)', probability: 0.22, change24h: 4.2 },
-      { name: 'Benchmark+Cert (110)', probability: 0.41, change24h: 2.1 },
-      { name: 'Benchmark Only (100)', probability: 0.24, change24h: -1.5 }
+      { name: 'All Achieved', probability: 0.22, change24h: 4.2 },
+      { name: 'Benchmark+Cert', probability: 0.41, change24h: 2.1 },
+      { name: 'Benchmark Only', probability: 0.24, change24h: -1.5 }
     ],
     volume24h: 142000,
     traders: 1876,
     deadline: '2027-12-31',
-    correlatedEvents: ['AGI Benchmark', 'Safety Cert', 'Regulatory OK']
+    correlatedEvents: ['AGI Benchmark', 'Safety Cert', 'Regulatory OK'],
+    logo: '/titlePic/aisafety.png'
   },
   {
     id: '5',
@@ -91,30 +96,32 @@ const MOCK_MARKETS: Market[] = [
     category: 'Climate',
     totalLiquidity: 620000,
     outcomes: [
-      { name: 'All Breach (111)', probability: 0.31, change24h: 0.9 },
-      { name: 'Temp+Ice (110)', probability: 0.30, change24h: 0.4 },
-      { name: 'None Breach (000)', probability: 0.18, change24h: -0.6 }
+      { name: 'All Breach', probability: 0.31, change24h: 0.9 },
+      { name: 'Temp+Ice', probability: 0.30, change24h: 0.4 },
+      { name: 'None Breach', probability: 0.18, change24h: -0.6 }
     ],
     volume24h: 45000,
     traders: 567,
     deadline: '2026-12-31',
-    correlatedEvents: ['>1.5°C', 'Arctic Ice <4M km²', 'Emissions Miss']
+    correlatedEvents: ['>1.5°C', 'Arctic Ice <4M km²', 'Emissions Miss'],
+    logo: '/titlePic/climatetipping.png'
   },
   {
     id: '6',
-    title: 'Tech IPO Cluster',
-    description: 'Joint-outcome pool for IPO timing, valuation tier, and first-day performance',
-    category: 'Finance',
+    title: 'Trump Administration Policy Cluster',
+    description: 'Unified market for trade tariff implementation, energy deregulation, and fiscal reform outcomes',
+    category: 'Politics',
     totalLiquidity: 1340000,
     outcomes: [
-      { name: 'Q2 + >$100B + Pop (111)', probability: 0.15, change24h: -2.1 },
-      { name: 'Q2 + >$100B (110)', probability: 0.29, change24h: -0.8 },
-      { name: 'Delayed (0xx)', probability: 0.44, change24h: 1.9 }
+      { name: 'Tariffs + Dereg + Reform', probability: 0.15, change24h: -2.1 },
+      { name: 'Tariffs + Dereg', probability: 0.29, change24h: -0.8 },
+      { name: 'Partial Success', probability: 0.44, change24h: 1.9 }
     ],
     volume24h: 98000,
     traders: 1432,
     deadline: '2026-12-31',
-    correlatedEvents: ['Q2 IPO', 'Val >$100B', 'Day1 >10%']
+    correlatedEvents: ['Trade Tariffs', 'Energy Dereg', 'Fiscal Reform'],
+    logo: '/titlePic/trump.png'
   }
 ];
 
@@ -137,55 +144,16 @@ export function MarketsOverview({ onSelectMarket }: MarketsOverviewProps) {
 
   return (
     <div className="space-y-6">
-      {/* Stats Bar */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-[var(--card)] border border-border rounded-xl p-5">
-          <div className="flex items-center gap-2 text-muted-foreground mb-2">
-            <DollarSign className="w-4 h-4" />
-            <span className="text-sm">Total Liquidity</span>
-          </div>
-          <p className="text-2xl font-semibold">$12.25M</p>
-          <p className="text-sm text-green-400 mt-1">+8.3% 24h</p>
-        </div>
-
-        <div className="bg-[var(--card)] border border-border rounded-xl p-5">
-          <div className="flex items-center gap-2 text-muted-foreground mb-2">
-            <TrendingUp className="w-4 h-4" />
-            <span className="text-sm">24h Volume</span>
-          </div>
-          <p className="text-2xl font-semibold">$957K</p>
-          <p className="text-sm text-green-400 mt-1">+12.1% 24h</p>
-        </div>
-
-        <div className="bg-[var(--card)] border border-border rounded-xl p-5">
-          <div className="flex items-center gap-2 text-muted-foreground mb-2">
-            <Clock className="w-4 h-4" />
-            <span className="text-sm">Active Markets</span>
-          </div>
-          <p className="text-2xl font-semibold">247</p>
-          <p className="text-sm text-muted-foreground mt-1">6 new today</p>
-        </div>
-
-        <div className="bg-[var(--card)] border border-border rounded-xl p-5">
-          <div className="flex items-center gap-2 text-muted-foreground mb-2">
-            <TrendingUp className="w-4 h-4" />
-            <span className="text-sm">Anonymous Traders</span>
-          </div>
-          <p className="text-2xl font-semibold">9,255</p>
-          <p className="text-sm text-purple-400 mt-1">Zero-knowledge</p>
-        </div>
-      </div>
-
       {/* Search and Filters */}
       <div className="flex flex-col md:flex-row gap-4">
         <div className="flex-1 relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-600" />
           <input
             type="text"
             placeholder="Search markets..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-[var(--card)] border border-border rounded-xl text-foreground placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
+            className="w-full pl-12 pr-4 py-3 bg-[var(--card)] border border-gray-200 rounded-xl text-foreground placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
           />
         </div>
 
@@ -195,8 +163,8 @@ export function MarketsOverview({ onSelectMarket }: MarketsOverviewProps) {
               key={category}
               onClick={() => setSelectedCategory(category)}
               className={`px-4 py-3 rounded-xl whitespace-nowrap transition-colors ${selectedCategory === category
-                  ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
-                  : 'bg-[var(--card)] text-muted-foreground border border-border hover:border-gray-700'
+                ? 'bg-purple-500/20 text-purple-700 border border-purple-500/30'
+                : 'bg-[var(--card)] text-gray-600 border border-gray-200 hover:border-gray-700'
                 }`}
             >
               {category}
@@ -218,7 +186,7 @@ export function MarketsOverview({ onSelectMarket }: MarketsOverviewProps) {
 
       {filteredMarkets.length === 0 && (
         <div className="text-center py-16">
-          <p className="text-muted-foreground">No markets found matching your criteria</p>
+          <p className="text-gray-600">No markets found matching your criteria</p>
         </div>
       )}
     </div>

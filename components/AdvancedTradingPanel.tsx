@@ -108,11 +108,11 @@ export function AdvancedTradingPanel({
   const affectedWorlds = getAffectedWorlds();
 
   return (
-    <div className="bg-[var(--card)] border border-border rounded-xl p-6">
+    <div className="bg-[var(--card)] border border-gray-200 rounded-xl p-6">
       <div className="flex items-center gap-2 mb-6">
-        <Shield className="w-5 h-5 text-purple-400" />
+        <Shield className="w-5 h-5 text-purple-700" />
         <h3 className="text-lg font-semibold">Place Trade</h3>
-        <div className="ml-auto flex items-center gap-2 px-3 py-1.5 bg-purple-500/10 text-purple-400 text-xs rounded-lg">
+        <div className="ml-auto flex items-center gap-2 px-3 py-1.5 bg-purple-600/10 text-purple-700 text-xs rounded-lg">
           <Lock className="w-3 h-3" />
           <span>ZK Private</span>
         </div>
@@ -120,7 +120,7 @@ export function AdvancedTradingPanel({
 
       {/* Outcome Selection based on Contract Type */}
       <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-300 mb-3">
+        <label className="block text-sm font-medium text-gray-800 mb-3">
           {contractType === 'marginal' && 'Select Event (Others Ignored)'}
           {contractType === 'slice' && 'Select 2 Events (Third Ignored)'}
           {contractType === 'corner' && 'Select Exact Scenario (All 3)'}
@@ -134,7 +134,7 @@ export function AdvancedTradingPanel({
             
             return (
               <div key={event.id} className={isDisabled ? 'opacity-30' : ''}>
-                <p className="text-xs text-muted-foreground mb-1">
+                <p className="text-xs text-gray-600 mb-1">
                   {event.id}: {event.name}
                   {isOptional && <span className="ml-1 text-yellow-400">(Ignored for slice)</span>}
                 </p>
@@ -145,7 +145,7 @@ export function AdvancedTradingPanel({
                     className={`flex-1 px-3 py-2 rounded-lg border transition-all text-sm ${
                       selectedOutcomes[key] === true
                         ? 'bg-green-500/10 border-green-500 text-green-400'
-                        : 'bg-muted/50 border-border text-gray-300 hover:border-gray-700'
+                        : 'bg-muted/50 border-gray-200 text-gray-800 hover:border-gray-700'
                     } ${isDisabled ? 'cursor-not-allowed' : ''}`}
                   >
                     Yes
@@ -156,7 +156,7 @@ export function AdvancedTradingPanel({
                     className={`flex-1 px-3 py-2 rounded-lg border transition-all text-sm ${
                       selectedOutcomes[key] === false
                         ? 'bg-red-500/10 border-red-500 text-red-400'
-                        : 'bg-muted/50 border-border text-gray-300 hover:border-gray-700'
+                        : 'bg-muted/50 border-gray-200 text-gray-800 hover:border-gray-700'
                     } ${isDisabled ? 'cursor-not-allowed' : ''}`}
                   >
                     No
@@ -164,7 +164,7 @@ export function AdvancedTradingPanel({
                   {!isDisabled && !isOptional && (
                     <button
                       onClick={() => setSelectedOutcomes(prev => ({ ...prev, [key]: null }))}
-                      className="px-3 py-2 rounded-lg border border-border text-muted-foreground hover:border-gray-700 text-sm"
+                      className="px-3 py-2 rounded-lg border border-gray-200 text-gray-600 hover:border-gray-700 text-sm"
                     >
                       Any
                     </button>
@@ -183,7 +183,7 @@ export function AdvancedTradingPanel({
             <Code className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
               <p className="text-xs text-blue-400 font-medium mb-1">Basket Trade (Corner-Space)</p>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-gray-600">
                 Buying worlds: <span className="font-mono text-blue-400">{affectedWorlds.join(', ')}</span>
               </p>
             </div>
@@ -193,7 +193,7 @@ export function AdvancedTradingPanel({
 
       {/* Amount Input */}
       <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-300 mb-2">
+        <label className="block text-sm font-medium text-gray-800 mb-2">
           Amount (USDC)
         </label>
         <div className="relative">
@@ -202,7 +202,7 @@ export function AdvancedTradingPanel({
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="0.00"
-            className="w-full px-4 py-3 bg-muted/50 border border-border rounded-lg text-foreground placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
+            className="w-full px-4 py-3 bg-muted/50 border border-gray-200 rounded-lg text-foreground placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
           />
           <div className="absolute right-3 top-1/2 -translate-y-1/2 flex gap-2">
             <button
@@ -223,22 +223,22 @@ export function AdvancedTradingPanel({
 
       {/* Trade Summary */}
       {amount && parseFloat(amount) > 0 && (
-        <div className="bg-muted/50 border border-border rounded-lg p-4 mb-6 space-y-2">
+        <div className="bg-muted/50 border border-gray-200 rounded-lg p-4 mb-6 space-y-2">
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Contract Price</span>
+            <span className="text-gray-600">Contract Price</span>
             <span className="text-foreground font-medium">${price.toFixed(4)}</span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Shares Received</span>
+            <span className="text-gray-600">Shares Received</span>
             <span className="text-foreground font-medium">{shares.toFixed(2)}</span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Potential Payout ($1/share)</span>
+            <span className="text-gray-600">Potential Payout ($1/share)</span>
             <span className="text-foreground font-medium">${potentialPayout.toFixed(2)}</span>
           </div>
           <div className="flex justify-between text-sm pt-2 border-t border-gray-700">
-            <span className="text-muted-foreground">Potential Profit</span>
-            <span className={`font-medium ${potentialProfit > 0 ? 'text-green-400' : 'text-muted-foreground'}`}>
+            <span className="text-gray-600">Potential Profit</span>
+            <span className={`font-medium ${potentialProfit > 0 ? 'text-green-400' : 'text-gray-600'}`}>
               +${potentialProfit.toFixed(2)} ({((potentialProfit / parseFloat(amount)) * 100).toFixed(1)}%)
             </span>
           </div>
@@ -251,7 +251,7 @@ export function AdvancedTradingPanel({
           ? 'bg-green-500/5 border-green-500/30'
           : isGeneratingProof
           ? 'bg-yellow-500/5 border-yellow-500/30'
-          : 'bg-muted/50 border-border'
+          : 'bg-muted/50 border-gray-200'
       }`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -260,12 +260,12 @@ export function AdvancedTradingPanel({
                 ? 'bg-green-500/10'
                 : isGeneratingProof
                 ? 'bg-yellow-500/10'
-                : 'bg-purple-500/10'
+                : 'bg-purple-600/10'
             }`}>
               {proofGenerated ? (
                 <CheckCircle2 className="w-4 h-4 text-green-400" />
               ) : (
-                <Lock className="w-4 h-4 text-purple-400" />
+                <Lock className="w-4 h-4 text-purple-700" />
               )}
             </div>
             <div>
@@ -274,7 +274,7 @@ export function AdvancedTradingPanel({
               }`}>
                 {proofGenerated ? 'ZK Proof Generated' : 'Aleo zk-SNARK Proof'}
               </p>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-gray-600">
                 {isGeneratingProof
                   ? 'Generating proof in Leo...'
                   : proofGenerated
@@ -297,7 +297,7 @@ export function AdvancedTradingPanel({
       <button
         onClick={handleTrade}
         disabled={!amount || parseFloat(amount) <= 0 || isGeneratingProof || proofGenerated}
-        className="w-full py-4 bg-purple-600 hover:bg-purple-700 disabled:bg-muted disabled:text-muted-foreground disabled:cursor-not-allowed text-foreground font-semibold rounded-lg transition-colors"
+        className="w-full py-4 bg-purple-600 hover:bg-purple-700 disabled:bg-muted disabled:text-gray-600 disabled:cursor-not-allowed text-foreground font-semibold rounded-lg transition-colors"
       >
         {isGeneratingProof ? (
           <span className="flex items-center justify-center gap-2">
@@ -312,7 +312,7 @@ export function AdvancedTradingPanel({
       </button>
 
       {/* Privacy Disclaimer */}
-      <div className="mt-4 flex items-start gap-2 text-xs text-muted-foreground">
+      <div className="mt-4 flex items-start gap-2 text-xs text-gray-600">
         <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
         <p>
           Your trade executes privately on Aleo. Position, identity, and strategy remain hidden. 

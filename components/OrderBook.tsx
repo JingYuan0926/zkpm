@@ -45,30 +45,30 @@ export function OrderBook({ contractName, bids, asks, lastPrice, change24h }: Or
               ${order.price.toFixed(3)}
             </span>
             {order.type === 'vamm' ? (
-              <Bot className="w-3 h-3 text-purple-400" />
+              <Bot className="w-3 h-3 text-purple-700" />
             ) : (
               <User className="w-3 h-3 text-blue-400" />
             )}
           </div>
-          <span className="text-muted-foreground font-mono">{order.size.toLocaleString()}</span>
+          <span className="text-gray-600 font-mono">{order.size.toLocaleString()}</span>
         </div>
       </div>
     );
   };
 
   return (
-    <div className="bg-[var(--card)] border border-border rounded-xl overflow-hidden">
+    <div className="bg-[var(--card)] border border-gray-200 rounded-xl overflow-hidden">
       {/* Header */}
-      <div className="p-4 border-b border-border">
+      <div className="p-4 border-b border-gray-200">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <BookOpen className="w-5 h-5 text-purple-400" />
+            <BookOpen className="w-5 h-5 text-purple-700" />
             <h3 className="font-semibold">Order Book</h3>
           </div>
           <div className="flex items-center gap-2 text-xs">
-            <div className="flex items-center gap-1 px-2 py-1 bg-purple-500/10 rounded">
-              <Bot className="w-3 h-3 text-purple-400" />
-              <span className="text-purple-400">vAMM</span>
+            <div className="flex items-center gap-1 px-2 py-1 bg-purple-600/10 rounded">
+              <Bot className="w-3 h-3 text-purple-700" />
+              <span className="text-purple-700">vAMM</span>
             </div>
             <div className="flex items-center gap-1 px-2 py-1 bg-blue-500/10 rounded">
               <User className="w-3 h-3 text-blue-400" />
@@ -77,12 +77,12 @@ export function OrderBook({ contractName, bids, asks, lastPrice, change24h }: Or
           </div>
         </div>
         <div>
-          <p className="text-sm text-muted-foreground">{contractName}</p>
+          <p className="text-sm text-gray-600">{contractName}</p>
         </div>
       </div>
 
       {/* Column Headers */}
-      <div className="px-3 py-2 bg-muted/50 flex justify-between text-xs text-muted-foreground font-medium">
+      <div className="px-3 py-2 bg-muted/50 flex justify-between text-xs text-gray-600 font-medium">
         <span>Price (USDC)</span>
         <span>Size (Shares)</span>
       </div>
@@ -90,14 +90,14 @@ export function OrderBook({ contractName, bids, asks, lastPrice, change24h }: Or
       {/* Order Book */}
       <div className="max-h-[500px] overflow-y-auto">
         {/* Asks (Sell orders - Red) */}
-        <div className="border-b border-border">
+        <div className="border-b border-gray-200">
           {asks.slice().reverse().map((ask, idx) => (
             <div key={idx}>{renderOrder(ask, 'ask')}</div>
           ))}
         </div>
 
         {/* Spread / Last Price */}
-        <div className="px-3 py-3 bg-gray-900 border-y-2 border-gray-700">
+        <div className="px-3 py-3 bg-gray-100 border-y-2 border-gray-700">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="text-lg font-bold">${lastPrice.toFixed(3)}</span>
@@ -106,10 +106,10 @@ export function OrderBook({ contractName, bids, asks, lastPrice, change24h }: Or
                 {change24h >= 0 ? '+' : ''}{change24h.toFixed(2)}%
               </span>
             </div>
-            <span className="text-xs text-muted-foreground">Last Price</span>
+            <span className="text-xs text-gray-600">Last Price</span>
           </div>
           {asks.length > 0 && bids.length > 0 && (
-            <div className="mt-2 flex justify-between text-xs text-muted-foreground">
+            <div className="mt-2 flex justify-between text-xs text-gray-600">
               <span>Spread: ${(asks[0].price - bids[0].price).toFixed(3)}</span>
               <span>{(((asks[0].price - bids[0].price) / lastPrice) * 100).toFixed(2)}%</span>
             </div>
@@ -125,7 +125,7 @@ export function OrderBook({ contractName, bids, asks, lastPrice, change24h }: Or
       </div>
 
       {/* Footer Info */}
-      <div className="px-3 py-2 bg-muted/50 border-t border-border text-xs text-muted-foreground">
+      <div className="px-3 py-2 bg-muted/50 border-t border-gray-200 text-xs text-gray-600">
         <p>vAMM ladder orders update automatically via LS-LMSR pricing</p>
       </div>
     </div>

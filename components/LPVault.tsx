@@ -23,45 +23,45 @@ export function LPVault() {
       {/* Header */}
       <div>
         <div className="flex items-center gap-3 mb-2">
-          <Layers className="w-8 h-8 text-purple-400" />
+          <Layers className="w-8 h-8 text-purple-700" />
           <h1 className="text-3xl font-semibold">LP Vault</h1>
         </div>
-        <p className="text-muted-foreground">
+        <p className="text-gray-600">
           Provide liquidity to back the vAMM across all joint-outcome markets. Earn fees from every trade.
         </p>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-[var(--card)] border border-border rounded-xl p-5">
-          <div className="flex items-center gap-2 text-muted-foreground mb-2">
+        <div className="bg-[var(--card)] border border-gray-200 rounded-xl p-5">
+          <div className="flex items-center gap-2 text-gray-600 mb-2">
             <DollarSign className="w-4 h-4" />
             <span className="text-sm">Total Vault Liquidity</span>
           </div>
           <p className="text-2xl font-semibold">${(vaultStats.totalLiquidity / 1000000).toFixed(2)}M</p>
-          <p className="text-sm text-muted-foreground mt-1">{vaultStats.activeMarkets} active markets</p>
+          <p className="text-sm text-gray-600 mt-1">{vaultStats.activeMarkets} active markets</p>
         </div>
 
-        <div className="bg-[var(--card)] border border-border rounded-xl p-5">
-          <div className="flex items-center gap-2 text-muted-foreground mb-2">
+        <div className="bg-[var(--card)] border border-gray-200 rounded-xl p-5">
+          <div className="flex items-center gap-2 text-gray-600 mb-2">
             <Users className="w-4 h-4" />
             <span className="text-sm">Your Deposit</span>
           </div>
           <p className="text-2xl font-semibold">${vaultStats.yourDeposit.toLocaleString()}</p>
-          <p className="text-sm text-purple-400 mt-1">{vaultStats.yourShare}% of pool</p>
+          <p className="text-sm text-purple-700 mt-1">{vaultStats.yourShare}% of pool</p>
         </div>
 
-        <div className="bg-[var(--card)] border border-border rounded-xl p-5">
-          <div className="flex items-center gap-2 text-muted-foreground mb-2">
+        <div className="bg-[var(--card)] border border-gray-200 rounded-xl p-5">
+          <div className="flex items-center gap-2 text-gray-600 mb-2">
             <TrendingUp className="w-4 h-4" />
             <span className="text-sm">Estimated APR</span>
           </div>
           <p className="text-2xl font-semibold text-green-400">{vaultStats.apr}%</p>
-          <p className="text-sm text-muted-foreground mt-1">Based on 30d fees</p>
+          <p className="text-sm text-gray-600 mt-1">Based on 30d fees</p>
         </div>
 
-        <div className="bg-[var(--card)] border border-border rounded-xl p-5">
-          <div className="flex items-center gap-2 text-muted-foreground mb-2">
+        <div className="bg-[var(--card)] border border-gray-200 rounded-xl p-5">
+          <div className="flex items-center gap-2 text-gray-600 mb-2">
             <Activity className="w-4 h-4" />
             <span className="text-sm">Your Fees (24h)</span>
           </div>
@@ -74,7 +74,7 @@ export function LPVault() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Deposit/Withdraw Panel */}
         <div className="lg:col-span-1">
-          <div className="bg-[var(--card)] border border-border rounded-xl p-6">
+          <div className="bg-[var(--card)] border border-gray-200 rounded-xl p-6">
             <h3 className="text-lg font-semibold mb-4">Manage Position</h3>
 
             {/* Tabs */}
@@ -83,8 +83,8 @@ export function LPVault() {
                 onClick={() => setActiveTab('deposit')}
                 className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-colors ${
                   activeTab === 'deposit'
-                    ? 'bg-purple-500/10 text-purple-400'
-                    : 'text-muted-foreground hover:bg-muted'
+                    ? 'bg-purple-600/10 text-purple-700'
+                    : 'text-gray-600 hover:bg-muted'
                 }`}
               >
                 <Plus className="w-4 h-4" />
@@ -94,8 +94,8 @@ export function LPVault() {
                 onClick={() => setActiveTab('withdraw')}
                 className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-colors ${
                   activeTab === 'withdraw'
-                    ? 'bg-purple-500/10 text-purple-400'
-                    : 'text-muted-foreground hover:bg-muted'
+                    ? 'bg-purple-600/10 text-purple-700'
+                    : 'text-gray-600 hover:bg-muted'
                 }`}
               >
                 <Minus className="w-4 h-4" />
@@ -106,7 +106,7 @@ export function LPVault() {
             {activeTab === 'deposit' ? (
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-800 mb-2">
                     Deposit Amount (USDC)
                   </label>
                   <div className="relative">
@@ -115,23 +115,23 @@ export function LPVault() {
                       value={depositAmount}
                       onChange={(e) => setDepositAmount(e.target.value)}
                       placeholder="0.00"
-                      className="w-full px-4 py-3 bg-muted/50 border border-border rounded-lg text-foreground placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
+                      className="w-full px-4 py-3 bg-muted/50 border border-gray-200 rounded-lg text-foreground placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
                     />
-                    <button className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-purple-400 hover:text-purple-300">
+                    <button className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-purple-700 hover:text-purple-300">
                       MAX
                     </button>
                   </div>
                 </div>
 
-                <div className="bg-muted/50 border border-border rounded-lg p-3 space-y-2 text-sm">
+                <div className="bg-muted/50 border border-gray-200 rounded-lg p-3 space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">You will receive</span>
+                    <span className="text-gray-600">You will receive</span>
                     <span className="text-foreground font-medium">
                       {depositAmount ? `${parseFloat(depositAmount).toFixed(2)} LP shares` : '0 LP shares'}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Your new pool share</span>
+                    <span className="text-gray-600">Your new pool share</span>
                     <span className="text-foreground font-medium">
                       {depositAmount
                         ? `${(((vaultStats.yourDeposit + parseFloat(depositAmount)) / (vaultStats.totalLiquidity + parseFloat(depositAmount))) * 100).toFixed(2)}%`
@@ -142,7 +142,7 @@ export function LPVault() {
 
                 <button
                   disabled={!depositAmount || parseFloat(depositAmount) <= 0}
-                  className="w-full py-3 bg-purple-600 hover:bg-purple-700 disabled:bg-muted disabled:text-muted-foreground disabled:cursor-not-allowed text-foreground font-semibold rounded-lg transition-colors"
+                  className="w-full py-3 bg-purple-600 hover:bg-purple-700 disabled:bg-muted disabled:text-gray-600 disabled:cursor-not-allowed text-foreground font-semibold rounded-lg transition-colors"
                 >
                   Deposit USDC
                 </button>
@@ -150,7 +150,7 @@ export function LPVault() {
             ) : (
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-800 mb-2">
                     Withdraw Amount (USDC)
                   </label>
                   <div className="relative">
@@ -160,29 +160,29 @@ export function LPVault() {
                       onChange={(e) => setWithdrawAmount(e.target.value)}
                       placeholder="0.00"
                       max={vaultStats.yourDeposit}
-                      className="w-full px-4 py-3 bg-muted/50 border border-border rounded-lg text-foreground placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
+                      className="w-full px-4 py-3 bg-muted/50 border border-gray-200 rounded-lg text-foreground placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
                     />
                     <button
                       onClick={() => setWithdrawAmount(vaultStats.yourDeposit.toString())}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-purple-400 hover:text-purple-300"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-purple-700 hover:text-purple-300"
                     >
                       MAX
                     </button>
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1">
+                  <p className="text-xs text-gray-600 mt-1">
                     Available: ${vaultStats.yourDeposit.toLocaleString()}
                   </p>
                 </div>
 
-                <div className="bg-muted/50 border border-border rounded-lg p-3 space-y-2 text-sm">
+                <div className="bg-muted/50 border border-gray-200 rounded-lg p-3 space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">You will receive</span>
+                    <span className="text-gray-600">You will receive</span>
                     <span className="text-foreground font-medium">
                       {withdrawAmount ? `${parseFloat(withdrawAmount).toFixed(2)} USDC` : '0 USDC'}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Your new pool share</span>
+                    <span className="text-gray-600">Your new pool share</span>
                     <span className="text-foreground font-medium">
                       {withdrawAmount
                         ? `${Math.max(0, ((vaultStats.yourDeposit - parseFloat(withdrawAmount)) / vaultStats.totalLiquidity) * 100).toFixed(2)}%`
@@ -193,7 +193,7 @@ export function LPVault() {
 
                 <button
                   disabled={!withdrawAmount || parseFloat(withdrawAmount) <= 0 || parseFloat(withdrawAmount) > vaultStats.yourDeposit}
-                  className="w-full py-3 bg-purple-600 hover:bg-purple-700 disabled:bg-muted disabled:text-muted-foreground disabled:cursor-not-allowed text-foreground font-semibold rounded-lg transition-colors"
+                  className="w-full py-3 bg-purple-600 hover:bg-purple-700 disabled:bg-muted disabled:text-gray-600 disabled:cursor-not-allowed text-foreground font-semibold rounded-lg transition-colors"
                 >
                   Withdraw USDC
                 </button>
@@ -207,7 +207,7 @@ export function LPVault() {
               <Info className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
               <div>
                 <h4 className="text-sm font-semibold text-blue-400 mb-2">How LP Vault Works</h4>
-                <ul className="space-y-2 text-xs text-muted-foreground">
+                <ul className="space-y-2 text-xs text-gray-600">
                   <li>• Your USDC backs the vAMM across all markets</li>
                   <li>• Earn fees from every trade (0.2% of volume)</li>
                   <li>• vAMM uses LS-LMSR for efficient pricing</li>
@@ -222,15 +222,15 @@ export function LPVault() {
         {/* Right Column - Performance & Metrics */}
         <div className="lg:col-span-2 space-y-6">
           {/* Performance Chart Placeholder */}
-          <div className="bg-[var(--card)] border border-border rounded-xl p-6">
+          <div className="bg-[var(--card)] border border-gray-200 rounded-xl p-6">
             <h3 className="text-lg font-semibold mb-4">Fee Revenue (Last 30 Days)</h3>
-            <div className="h-64 flex items-center justify-center text-muted-foreground">
+            <div className="h-64 flex items-center justify-center text-gray-600">
               <p>Performance chart visualization would go here</p>
             </div>
           </div>
 
           {/* Market Breakdown */}
-          <div className="bg-[var(--card)] border border-border rounded-xl p-6">
+          <div className="bg-[var(--card)] border border-gray-200 rounded-xl p-6">
             <h3 className="text-lg font-semibold mb-4">Liquidity Distribution</h3>
             <div className="space-y-3">
               {[
@@ -239,18 +239,18 @@ export function LPVault() {
                 { name: 'Crypto Price Predictions', liquidity: 485000, utilization: 55, apy: 15.8 },
                 { name: 'Climate & Energy Markets', liquidity: 450000, utilization: 48, apy: 12.4 }
               ].map((market, idx) => (
-                <div key={idx} className="bg-muted/50 border border-border rounded-lg p-4">
+                <div key={idx} className="bg-muted/50 border border-gray-200 rounded-lg p-4">
                   <div className="flex items-center justify-between mb-3">
                     <h4 className="font-medium">{market.name}</h4>
                     <span className="text-sm text-green-400">{market.apy}% APY</span>
                   </div>
                   <div className="grid grid-cols-2 gap-4 mb-3">
                     <div>
-                      <p className="text-xs text-muted-foreground">Allocated</p>
+                      <p className="text-xs text-gray-600">Allocated</p>
                       <p className="text-sm font-medium">${(market.liquidity / 1000).toFixed(0)}K</p>
                     </div>
                     <div>
-                      <p className="text-xs text-muted-foreground">Utilization</p>
+                      <p className="text-xs text-gray-600">Utilization</p>
                       <p className="text-sm font-medium">{market.utilization}%</p>
                     </div>
                   </div>
@@ -271,7 +271,7 @@ export function LPVault() {
               <AlertCircle className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
               <div>
                 <h4 className="text-sm font-semibold text-yellow-400 mb-2">Risk Disclosure</h4>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-gray-600">
                   Providing liquidity carries risk. In extreme market movements, the vAMM may accumulate inventory imbalances. 
                   The safety mechanisms (volatility spreads, inventory skewing, vault cap) protect against catastrophic losses, 
                   but LPs should understand they may experience temporary impermanent loss during high volatility periods.

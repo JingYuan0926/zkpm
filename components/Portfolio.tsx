@@ -89,7 +89,7 @@ export function Portfolio({ onSelectMarket }: PortfolioProps) {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-semibold mb-1">Your Private Portfolio</h2>
-          <p className="text-muted-foreground text-sm">All positions are zero-knowledge encrypted</p>
+          <p className="text-gray-600 text-sm">All positions are zero-knowledge encrypted</p>
         </div>
         <button
           onClick={() => setHideAmounts(!hideAmounts)}
@@ -102,20 +102,20 @@ export function Portfolio({ onSelectMarket }: PortfolioProps) {
 
       {/* Portfolio Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-[var(--card)] border border-border rounded-xl p-5">
-          <div className="flex items-center gap-2 text-muted-foreground mb-2">
+        <div className="bg-[var(--card)] border border-gray-200 rounded-xl p-5">
+          <div className="flex items-center gap-2 text-gray-600 mb-2">
             <DollarSign className="w-4 h-4" />
             <span className="text-sm">Total Invested</span>
           </div>
           <p className="text-2xl font-semibold">{formatCurrency(totalInvested)}</p>
           <div className="flex items-center gap-1 mt-2">
-            <Lock className="w-3 h-3 text-purple-400" />
-            <span className="text-xs text-purple-400">Private</span>
+            <Lock className="w-3 h-3 text-purple-700" />
+            <span className="text-xs text-purple-700">Private</span>
           </div>
         </div>
 
-        <div className="bg-[var(--card)] border border-border rounded-xl p-5">
-          <div className="flex items-center gap-2 text-muted-foreground mb-2">
+        <div className="bg-[var(--card)] border border-gray-200 rounded-xl p-5">
+          <div className="flex items-center gap-2 text-gray-600 mb-2">
             <Activity className="w-4 h-4" />
             <span className="text-sm">Current Value</span>
           </div>
@@ -126,36 +126,36 @@ export function Portfolio({ onSelectMarket }: PortfolioProps) {
           </div>
         </div>
 
-        <div className="bg-[var(--card)] border border-border rounded-xl p-5">
-          <div className="flex items-center gap-2 text-muted-foreground mb-2">
+        <div className="bg-[var(--card)] border border-gray-200 rounded-xl p-5">
+          <div className="flex items-center gap-2 text-gray-600 mb-2">
             <TrendingUp className="w-4 h-4" />
             <span className="text-sm">Total P&L</span>
           </div>
           <p className={`text-2xl font-semibold ${totalPnL >= 0 ? 'text-green-400' : 'text-red-400'}`}>
             {!hideAmounts && (totalPnL >= 0 ? '+' : '')}{hideAmounts ? '•••••' : totalPnLPercent.toFixed(2)}%
           </p>
-          <p className="text-sm text-muted-foreground mt-2">
+          <p className="text-sm text-gray-600 mt-2">
             {!hideAmounts && `${totalPnL >= 0 ? '+' : ''}${formatCurrency(Math.abs(totalPnL))}`}
           </p>
         </div>
 
-        <div className="bg-[var(--card)] border border-border rounded-xl p-5">
-          <div className="flex items-center gap-2 text-muted-foreground mb-2">
+        <div className="bg-[var(--card)] border border-gray-200 rounded-xl p-5">
+          <div className="flex items-center gap-2 text-gray-600 mb-2">
             <Shield className="w-4 h-4" />
             <span className="text-sm">Max Payout</span>
           </div>
           <p className="text-2xl font-semibold">{formatCurrency(totalPotentialPayout)}</p>
-          <p className="text-sm text-muted-foreground mt-2">If all win</p>
+          <p className="text-sm text-gray-600 mt-2">If all win</p>
         </div>
       </div>
 
       {/* ZK Privacy Notice */}
       <div className="bg-purple-500/5 border border-purple-500/20 rounded-xl p-5">
         <div className="flex items-start gap-3">
-          <Shield className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" />
+          <Shield className="w-5 h-5 text-purple-700 flex-shrink-0 mt-0.5" />
           <div className="flex-1">
-            <h3 className="text-sm font-semibold text-purple-400 mb-1">Zero-Knowledge Privacy Active</h3>
-            <p className="text-sm text-muted-foreground">
+            <h3 className="text-sm font-semibold text-purple-700 mb-1">Zero-Knowledge Privacy Active</h3>
+            <p className="text-sm text-gray-600">
               Your positions are encrypted using zero-knowledge proofs. Only you can see this portfolio. 
               Not even protocol operators or validators can access your trading data.
             </p>
@@ -175,40 +175,40 @@ export function Portfolio({ onSelectMarket }: PortfolioProps) {
             return (
               <div
                 key={position.id}
-                className="bg-[var(--card)] border border-border rounded-xl p-5 hover:border-purple-500/50 transition-all"
+                className="bg-[var(--card)] border border-gray-200 rounded-xl p-5 hover:border-purple-500/50 transition-all"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="px-2 py-1 bg-purple-500/10 text-purple-400 text-xs rounded-md font-medium">
+                      <span className="px-2 py-1 bg-purple-600/10 text-purple-700 text-xs rounded-md font-medium">
                         {position.category}
                       </span>
-                      <span className="text-xs text-muted-foreground">{formatDate(position.timestamp)}</span>
+                      <span className="text-xs text-gray-600">{formatDate(position.timestamp)}</span>
                     </div>
                     <h4 className="font-semibold mb-1">{position.marketTitle}</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Position: <span className="text-purple-400 font-medium">{position.outcome}</span>
+                    <p className="text-sm text-gray-600">
+                      Position: <span className="text-purple-700 font-medium">{position.outcome}</span>
                     </p>
                   </div>
                   <div className="flex items-center gap-2 px-3 py-1.5 bg-muted/50 rounded-lg">
-                    <Lock className="w-3 h-3 text-purple-400" />
-                    <span className="text-xs text-purple-400">Private</span>
+                    <Lock className="w-3 h-3 text-purple-700" />
+                    <span className="text-xs text-purple-700">Private</span>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                   <div>
-                    <p className="text-xs text-muted-foreground mb-1">Invested</p>
+                    <p className="text-xs text-gray-600 mb-1">Invested</p>
                     <p className="font-medium">{formatCurrency(position.amount)}</p>
                   </div>
 
                   <div>
-                    <p className="text-xs text-muted-foreground mb-1">Current Value</p>
+                    <p className="text-xs text-gray-600 mb-1">Current Value</p>
                     <p className="font-medium">{formatCurrency(position.currentValue)}</p>
                   </div>
 
                   <div>
-                    <p className="text-xs text-muted-foreground mb-1">P&L</p>
+                    <p className="text-xs text-gray-600 mb-1">P&L</p>
                     <div className={`font-medium ${pnl >= 0 ? 'text-green-400' : 'text-red-400'}`}>
                       {!hideAmounts && (
                         <div className="flex items-center gap-1">
@@ -221,12 +221,12 @@ export function Portfolio({ onSelectMarket }: PortfolioProps) {
                   </div>
 
                   <div>
-                    <p className="text-xs text-muted-foreground mb-1">Probability</p>
+                    <p className="text-xs text-gray-600 mb-1">Probability</p>
                     <p className="font-medium">{(position.probability * 100).toFixed(1)}%</p>
                   </div>
 
                   <div>
-                    <p className="text-xs text-muted-foreground mb-1">Max Payout</p>
+                    <p className="text-xs text-gray-600 mb-1">Max Payout</p>
                     <p className="font-medium">{formatCurrency(position.potentialPayout)}</p>
                   </div>
                 </div>
@@ -237,10 +237,10 @@ export function Portfolio({ onSelectMarket }: PortfolioProps) {
       </div>
 
       {MOCK_POSITIONS.length === 0 && (
-        <div className="bg-[var(--card)] border border-border rounded-xl p-12 text-center">
+        <div className="bg-[var(--card)] border border-gray-200 rounded-xl p-12 text-center">
           <Shield className="w-12 h-12 text-gray-600 mx-auto mb-4" />
           <h3 className="text-lg font-semibold mb-2">No Active Positions</h3>
-          <p className="text-muted-foreground mb-6">Start trading on prediction markets to see your portfolio here</p>
+          <p className="text-gray-600 mb-6">Start trading on prediction markets to see your portfolio here</p>
           <button
             onClick={() => onSelectMarket('1')}
             className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors"
